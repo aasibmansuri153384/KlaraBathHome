@@ -1,0 +1,63 @@
+/* Custom White, Beige & Light Grey Bootstrap 5 Overrides */
+:root {
+  --bg-canvas: #faf9f6;
+  --bg-beige: #f5f1eb;
+  --bg-grey: #f3f2ef;
+  --border-subtle: #e5e2dc;
+  --ink-dark: #1f1e1c;
+  --ink-muted: #66635e;
+}
+
+body {
+  background-color: var(--bg-canvas);
+  color: var(--ink-dark);
+  font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+}
+
+.navbar-brand {
+  font-family: Georgia, serif;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.bg-beige {
+  background-color: var(--bg-beige) !important;
+}
+
+.bg-stone-grey {
+  background-color: var(--bg-grey) !important;
+}
+
+.btn-charcoal {
+  background-color: var(--ink-dark);
+  color: #ffffff;
+  border: 1px solid var(--ink-dark);
+}
+
+.btn-charcoal:hover {
+  background-color: #353330;
+  color: #ffffff;
+}
+
+.product-card {
+  background: #ffffff;
+  border: 1px solid var(--border-subtle);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.product-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(31, 30, 28, 0.06);
+}
+
+.product-img-wrap {
+  background-color: var(--bg-beige);
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+}
+
+.product-img-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
