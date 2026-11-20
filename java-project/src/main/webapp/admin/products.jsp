@@ -1,4 +1,10 @@
 <%@ page import="java.util.*, com.bathhome.model.Product" %>
+<%
+    if (request.getAttribute("products") == null) {
+        response.sendRedirect(request.getContextPath() + "/admin-products");
+        return;
+    }
+%>
 <%@ include file="../includes/admin-header.jsp" %>
 
 <%

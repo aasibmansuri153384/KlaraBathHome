@@ -1,14 +1,17 @@
 <%@ page import="java.util.*, com.bathhome.model.*" %>
-<%@ include file="includes/header.jsp" %>
-
 <%
     User u = (User) session.getAttribute("loggedUser");
     if (u == null) {
         response.sendRedirect("login.jsp");
         return;
     }
+    if (request.getAttribute("orders") == null) {
+        response.sendRedirect("profile");
+        return;
+    }
     List<Order> orders = (List<Order>) request.getAttribute("orders");
 %>
+<%@ include file="includes/header.jsp" %>
 
 <div class="container py-5">
     <div class="d-flex justify-content-between align-items-center mb-4">

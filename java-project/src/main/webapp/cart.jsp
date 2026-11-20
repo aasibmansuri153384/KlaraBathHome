@@ -1,4 +1,10 @@
 <%@ page import="java.util.*, com.bathhome.model.CartItem, com.bathhome.model.User" %>
+<%
+    if (request.getAttribute("cartItems") == null) {
+        response.sendRedirect("cart");
+        return;
+    }
+%>
 <%@ include file="includes/header.jsp" %>
 
 <%

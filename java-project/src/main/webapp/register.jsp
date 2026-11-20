@@ -11,7 +11,7 @@
                     <div class="alert alert-danger small"><%= request.getAttribute("error") %></div>
                 <% } %>
 
-                <form action="register" method="post" onsubmit="return validateRegister();">
+                <form action="register" method="post" onsubmit="return validateRegisterForm();">
                     <div class="mb-3">
                         <label class="form-label small fw-semibold">Full Name</label>
                         <input type="text" id="fullName" name="fullName" class="form-control" required>
@@ -42,16 +42,5 @@
         </div>
     </div>
 </div>
-
-<script>
-function validateRegister() {
-    const pass = document.getElementById('password').value;
-    if (pass.length < 6) {
-        alert('Password must be at least 6 characters.');
-        return false;
-    }
-    return true;
-}
-</script>
 
 <%@ include file="includes/footer.jsp" %>

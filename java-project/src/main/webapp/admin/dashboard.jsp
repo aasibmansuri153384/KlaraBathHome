@@ -1,3 +1,9 @@
+<%
+    if (request.getAttribute("totalProducts") == null) {
+        response.sendRedirect(request.getContextPath() + "/admin-dashboard");
+        return;
+    }
+%>
 <%@ include file="../includes/admin-header.jsp" %>
 
 <div class="container py-5">

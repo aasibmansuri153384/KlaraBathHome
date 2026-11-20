@@ -23,6 +23,7 @@ public class ProductServlet extends HttpServlet {
 
         String idParam = request.getParameter("id");
         String category = request.getParameter("category");
+        String search = request.getParameter("search");
 
         try (Connection conn = DBConnection.getConnection()) {
             if (idParam != null && !idParam.isEmpty()) {
@@ -39,8 +40,19 @@ public class ProductServlet extends HttpServlet {
 
             List<Product> products = new ArrayList<>();
             PreparedStatement stmt;
-            if (category != null && !category.isEmpty() && !category.equals("All")) {
-                stmt = conn.prepareStatement("SELECT * FROM products WHERE category = ? OR category_group = ? ORDER BY product_id DESC");
+
+            if (search != null && !search.trim().isEmpty()) {
+                String q = "%" + search.trim() + "%";
+                stmt = conn.prepareStatement(
+                    "SELECT * FROM products WHERE product_name LIKE ? OR category LIKE ? OR description LIKE ? ORDER BY product_id DESC"
+                );
+                stmt.setString(1, q);
+                stmt.setString(2, q);
+                stmt.setString(3, q);
+            } else if (category != null && !category.isEmpty() && !category.equals("All")) {
+                stmt = conn.prepareStatement(
+                    "SELECT * FROM products WHERE category = ? OR category_group = ? ORDER BY product_id DESC"
+                );
                 stmt.setString(1, category);
                 stmt.setString(2, category);
             } else {
@@ -51,8 +63,10 @@ public class ProductServlet extends HttpServlet {
             while (rs.next()) {
                 products.add(mapProduct(rs));
             }
+
             request.setAttribute("products", products);
             request.setAttribute("selectedCategory", category != null ? category : "All");
+            request.setAttribute("searchQuery", search != null ? search : "");
             request.getRequestDispatcher("products.jsp").forward(request, response);
         } catch (Exception e) {
             e.printStackTrace();
